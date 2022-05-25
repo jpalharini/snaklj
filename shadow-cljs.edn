@@ -1,0 +1,20 @@
+{:nrepl        {:port 8777}
+
+ :source-paths ["src" "test"]
+
+ :deps         {:aliases [:dev :test]}
+
+ :dev-http     {8280 "resources/public"
+                8290 "target/browser-test"}
+
+ :builds       {:app
+                {:target     :browser
+                 :output-dir "resources/public/js/compiled"
+                 :asset-path "/js/compiled"
+                 :modules
+                 {:app {:init-fn snaklj.core/init}}
+                 :devtools
+                 {:preloads []}
+                 :dev
+                 {:compiler-options
+                  {:closure-defines {}}}}}}
