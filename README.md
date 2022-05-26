@@ -5,7 +5,7 @@ The famous Nokia snake game designed in [re-frame](https://github.com/day8/re-fr
 ## States
 
 ### Game
-The game can be running, paused or ended; which resets its and the snake's state.
+The game can be running, paused or ended; which resets its and the [snake's state](https://github.com/jpalharini/snaklj/blob/main/README.md#snake).
 
 ![image](https://user-images.githubusercontent.com/3941583/170389521-84d271e9-518c-433e-8ef6-ed20b3c79296.png)
 
