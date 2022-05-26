@@ -7,12 +7,12 @@ The famous Nokia snake game designed in [re-frame](https://github.com/day8/re-fr
 ### Game
 The game can be running, paused or ended; which resets its and the [snake's state](https://github.com/jpalharini/snaklj/blob/main/README.md#snake).
 
-![image](https://user-images.githubusercontent.com/3941583/170389521-84d271e9-518c-433e-8ef6-ed20b3c79296.png)
+![image](https://user-images.githubusercontent.com/3941583/170390000-18112e5e-563a-47e3-9cf8-5d8efd474844.png)
 
 ### Snake
 The snake has three possible states, represented in the below diagram. When it eats their food, it grows and goes back to running; and when it crashes, it dies.
 
-![image](https://user-images.githubusercontent.com/3941583/170389034-2df4dd67-a2e0-46b1-8c6f-6970db6a9b9d.png)
+![image](https://user-images.githubusercontent.com/3941583/170390078-7a18288e-cb3d-4d11-849e-c63a54c2faeb.png)
 
 ## Getting Started
 
