@@ -1,16 +1,26 @@
 # snaklj
 
-A [re-frame](https://github.com/day8/re-frame) application designed to ... well, that part is up to
-you.
+The famous Nokia snake game designed in [re-frame](https://github.com/day8/re-frame).
+
+## States
+
+### Game
+The game can be running, paused or ended; which resets its and the snake's state.
+
+![image](https://user-images.githubusercontent.com/3941583/170389521-84d271e9-518c-433e-8ef6-ed20b3c79296.png)
+
+### Snake
+The snake has three possible states, represented in the below diagram. When it eats their food, it grows and goes back to running; and when it crashes, it dies.
+
+![image](https://user-images.githubusercontent.com/3941583/170389034-2df4dd67-a2e0-46b1-8c6f-6970db6a9b9d.png)
 
 ## Getting Started
 
 ### Project Overview
 
-* Architecture:
-[Single Page Application (SPA)](https://en.wikipedia.org/wiki/Single-page_application)
+* Architecture: [Single Page Application (SPA)](https://en.wikipedia.org/wiki/Single-page_application)
 * Languages
-  - Front end is [ClojureScript](https://clojurescript.org/) with ([re-frame](https://github.com/day8/re-frame))
+  - [ClojureScript](https://clojurescript.org/) with ([re-frame](https://github.com/day8/re-frame))
 * Dependencies
   - UI framework: [re-frame](https://github.com/day8/re-frame)
   ([docs](https://github.com/day8/re-frame/blob/master/docs/README.md),
@@ -47,7 +57,6 @@ you.
 [github actions](https://github.com/features/actions) pipelines.
   - [`test.yaml`](.github/workflows/test.yaml): Pipeline for testing.
 
-
 ### Editor/IDE
 
 Use your preferred editor or IDE that supports Clojure/ClojureScript development. See
@@ -55,7 +64,7 @@ Use your preferred editor or IDE that supports Clojure/ClojureScript development
 
 ### Environment Setup
 
-1. Install [JDK 8 or later](https://openjdk.java.net/install/) (Java Development Kit)
+1. Install [JDK 11 or later](https://openjdk.java.net/install/) (Java Development Kit)
 2. Install [Node.js](https://nodejs.org/) (JavaScript runtime environment) which should include
    [NPM](https://docs.npmjs.com/cli/npm) or if your Node.js installation does not include NPM also install it.
 5. Clone this repo and open a terminal in the `snaklj` project root directory
