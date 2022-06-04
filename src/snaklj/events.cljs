@@ -1,10 +1,14 @@
 (ns snaklj.events
-  (:require
-   [re-frame.core :as re-frame]
-   [snaklj.db :as db]
-   ))
+  (:require [re-frame.core :as rf]
+            [snaklj.db :as db]
+            [snaklj.game :as game]))
 
-(re-frame/reg-event-db
+(rf/reg-event-db
  ::initialize-db
  (fn [_ _]
    db/default-db))
+
+(rf/reg-event-db
+ ::initialize-game
+ (fn [{:keys [snake] :as db} _]
+   (update db :matrix game/draw-snake snake)))

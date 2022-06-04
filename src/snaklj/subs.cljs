@@ -1,8 +1,16 @@
 (ns snaklj.subs
-  (:require
-   [re-frame.core :as re-frame]))
+  (:require [re-frame.core :as rf]))
 
-(re-frame/reg-sub
+(rf/reg-sub
  ::name
  (fn [db]
    (:name db)))
+
+(rf/reg-sub
+ ::matrix
+ (fn [{m :matrix}] m))
+
+(rf/reg-sub
+ ::snake-size
+ (fn [{s :snake}]
+   (:size s)))
