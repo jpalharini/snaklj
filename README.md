@@ -2,6 +2,8 @@
 
 The famous Nokia snake game designed in [re-frame](https://github.com/day8/re-frame).
 
+This is a project for the _Fundamentos de Sistemas Digitais_ subject at [IMED](https://imed.edu.br/), ministered by [Prof. Thaisa Leal](http://lattes.cnpq.br/4589660577066054).
+
 ## The Game
 
 ### How it works
