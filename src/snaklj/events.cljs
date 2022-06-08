@@ -1,7 +1,8 @@
 (ns snaklj.events
   (:require [re-frame.core :as rf]
             [snaklj.db :as db]
-            [snaklj.game.setup :as game.setup]))
+            [snaklj.game.setup :as game.setup]
+            [snaklj.game.logic :as game.logic]))
 
 (rf/reg-event-db
  ::initialize-db
@@ -16,13 +17,13 @@
      (-> db
          (assoc :snake {:state     :alive
                         :direction direction
-                        :positions initial-snake-positions})
-         (assoc :food-positions #{})))))
+                        :positions initial-snake-positions}
+                :food-position (game.logic/new-food-position initial-snake-positions))))))
 
 (rf/reg-event-db
  :snake/ate
- (fn [db [_ position]]
-   (update db :food-positions disj position)))
+ (fn [db _]
+   (assoc db :food-position (game.logic/new-food-position (-> db :snake :positions)))))
 
 (rf/reg-event-db
  :game/change-state

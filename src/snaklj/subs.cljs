@@ -30,6 +30,6 @@
    (:positions s)))
 
 (rf/reg-sub
- ::food-positions
+ ::food-position
  (fn [db]
-   (:food-positions db)))
+   (:food-position db)))

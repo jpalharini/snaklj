@@ -28,11 +28,6 @@
    (assoc-in db [:snake :positions] positions)))
 
 (rf/reg-event-db
- ::update-food-positions
- (fn [db [_ positions]]
-   (assoc db :food-positions positions)))
-
-(rf/reg-event-db
  ::kill-snake
  (fn [db _]
    (-> db

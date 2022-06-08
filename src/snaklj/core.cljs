@@ -15,18 +15,16 @@
   (rf/dispatch [::db/update-matrix matrix]))
 
 (defn cycle-game []
-  (let [game-state*     (rf/subscribe [::subs/game-state])
-        matrix*         (rf/subscribe [::subs/matrix])
-        snake*          (rf/subscribe [::subs/snake])
-        food-positions* (rf/subscribe [::subs/food-positions])
-        msize           config/matrix-size]
+  (let [game-state*    (rf/subscribe [::subs/game-state])
+        matrix*        (rf/subscribe [::subs/matrix])
+        snake*         (rf/subscribe [::subs/snake])
+        food-position* (rf/subscribe [::subs/food-position])
+        msize          config/matrix-size]
     (when (= @game-state* :running)
       (game/move-snake! snake* matrix*)
-      ; Produce food in parallel, so it doesn't delay the game
-      (go (game/maybe-produce-food! snake* food-positions*))
       (-> (matrix/zero-matrix msize msize)
           (game/draw-snake snake*)
-          (game/draw-food food-positions*)
+          (game/draw-food food-position*)
           (update-matrix!)))))
 
 (defonce run-game (js/setInterval cycle-game config/game-speed))

@@ -34,10 +34,19 @@
   (let [pos-content (matrix/mget @matrix* x y)]
     (= pos-content 2)))
 
-(defn new-food-position []
+(defn random-food-position []
   [(rand-int 30) (rand-int 30)])
 
 (defn food-position-clash?
-  [snake* food-positions* new-position]
-  (not (or (@food-positions* new-position)
-           (some #{new-position} (:positions @snake*)))))
+  [snake-positions new-position]
+  (some #{new-position} snake-positions))
+
+(defn new-food-position
+  ([snake-positions]
+   (new-food-position snake-positions (random-food-position)))
+  ([snake-positions new-position]
+   ;; If we randomically place food where the snake is, come up with a new position.
+   ;; Else, return the new food position.
+   (if (food-position-clash? snake-positions new-position)
+     (new-food-position snake-positions (random-food-position))
+     new-position)))
