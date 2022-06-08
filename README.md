@@ -2,19 +2,31 @@
 
 The famous Nokia snake game designed in [re-frame](https://github.com/day8/re-frame).
 
-## States
+## The Game
 
-### Game
+### How it works
+The snake runs through a matrix. It is initially placed at a random, but safe* position and moving in any of the four basic directions (up, down, left or right). Its direction can be controlled by the arrow keys of the keyboard.
+
+> *the safe position is anywhere within the matrix at a minimum distance of 5 blocks from any edge.
+
+Randomically, "food" will be placed at any position within the matrix. Anytime the snake eats, it grows its size.
+
+Your score is the size of the snake. You lose if you crash into an edge or into the body of the snake. 
+
+### States
+
+#### Game
 The game can be running, paused or ended; which resets its and the [snake's state](https://github.com/jpalharini/snaklj/blob/main/README.md#snake).
 
 ![image](https://user-images.githubusercontent.com/3941583/170390000-18112e5e-563a-47e3-9cf8-5d8efd474844.png)
 
-### Snake
+#### Snake
 The snake has three possible states, represented in the below diagram. When it eats their food, it grows and goes back to running; and when it crashes, it dies.
 
 ![image](https://user-images.githubusercontent.com/3941583/170390078-7a18288e-cb3d-4d11-849e-c63a54c2faeb.png)
 
-## Getting Started
+
+## The Project
 
 ### Project Overview
 
@@ -27,10 +39,14 @@ The snake has three possible states, represented in the below diagram. When it e
   [FAQs](https://github.com/day8/re-frame/blob/master/docs/FAQs/README.md)) ->
   [Reagent](https://github.com/reagent-project/reagent) ->
   [React](https://github.com/facebook/react)
+  - Helper code to work with matrices more easily: [core.matrix](https://github.com/mikera/core.matrix)
+  - Library that monitors and handles keyboard events: [re-pressed](https://github.com/gadfly361/re-pressed)
 * Build tools
   - CLJS compilation, dependency management, REPL, & hot reload: [`shadow-cljs`](https://github.com/thheller/shadow-cljs)
 * Development tools
-  - Debugging: [CLJS DevTools](https://github.com/binaryage/cljs-devtools)
+  - Debugging:
+    - [CLJS DevTools](https://github.com/binaryage/cljs-devtools)
+    - [re-frame-10x](https://github.com/day8/re-frame-10x)
 
 #### Directory structure
 
@@ -52,7 +68,16 @@ The snake has three possible states, represented in the below diagram. When it e
       - Not tracked in source control; see [`.gitignore`](.gitignore)
 * [`src/snaklj/`](src/snaklj/): SPA source files (ClojureScript,
 [re-frame](https://github.com/Day8/re-frame))
-  - [`core.cljs`](src/snaklj/core.cljs): contains the SPA entry point, `init`
+  - [`config.cljs`](src/snaklj/config.cljs): defines constants that control the setup of the game
+  - [`core.cljs`](src/snaklj/core.cljs): contains the SPA entry point, `init`; and game cycles logic
+  - [`db.cljs`](src/snaklj/db.cljs): contains event handlers for changes to the app-db
+  - [`events.cljs`](src/snaklj/events.cljs): registers event handlers for the game's and app's lifecycle
+  - [`subs.cljs`](src/snaklj/subs.cljs): defines subscriptions to access data in app-db
+  - [`views.cljs`](src/snaklj/views.cljs): draws and styles the HTML elements using [hiccup](https://github.com/weavejester/hiccup)
+  * [`game/`](src/snaklj/game/)
+    - [`controller.cljs`](src/snaklj/game/controller.cljs): the "brains" of the game. Controls collisions, snake movements and updates the matrix in app-db
+    - [`logic.cljs`](src/snaklj/game/logic.cljs): helper, pure functions that implement business/game rules
+    - [`setup.cljs`](src/snaklj/game/setup.cljs): defines functions to setup the game when starting up (or restarting);
 * [`.github/workflows/`](.github/workflows/): contains the
 [github actions](https://github.com/features/actions) pipelines.
   - [`test.yaml`](.github/workflows/test.yaml): Pipeline for testing.

@@ -23,10 +23,17 @@
                                               :left             (* y block-size)}}]))]))
 
 (defn main-panel []
-  (let [name    (rf/subscribe [::subs/name])
-        matrix* (rf/subscribe [::subs/matrix])]
-    (rf/dispatch [::db/update-game-state :running])
+  (let [matrix*     (rf/subscribe [::subs/matrix])
+        game-state* (rf/subscribe [::subs/game-state])
+        snake-size* (rf/subscribe [::subs/snake-size])]
     [:div
-     [:h1
-      "Hello from game " @name]
-     (draw-board @matrix*)]))
+     [:h1 "SNAKLJ"]
+     [:p "The famous Snake game, in ClojureScript + Re-Frame"]
+     (draw-board @matrix*)
+     [:a [:i.action-button {:class    (case @game-state*
+                                        :running "bi bi-pause-circle-fill"
+                                        "bi bi-play-circle-fill")
+                            :on-click #(rf/dispatch-sync [:game/change-state])}]]
+     [:p [:b "Snake size: "] @snake-size*]
+     (when (= @game-state* :lost)
+       [:p "You crashed! Press " [:i {:class "bi bi-play-circle-fill"}] " to restart."])]))

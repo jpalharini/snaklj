@@ -24,6 +24,16 @@
  (fn [db [_ position]]
    (update db :food-positions disj position)))
 
+(rf/reg-event-db
+ :game/change-state
+ (fn [db _]
+   (let [current-state (:game-state db)]
+     (when (= current-state :lost)
+       (rf/dispatch [::initialize-game]))
+     (assoc db :game-state (case current-state
+                             :running :paused
+                             :running)))))
+
 (defn update-valid-direction
   [db new-direction]
   (let [current-direction (-> db :snake :direction)

@@ -1,0 +1,15 @@
+h1, p {
+    font-family: 'Roboto', sans-serif;
+}
+
+b {
+    font-weight: bold;
+}
+
+.action-button {
+    position: relative;
+    top: 10px;
+    text-align: center;
+    font-size: 50px;
+    cursor: pointer;
+}

@@ -13,13 +13,11 @@
   [positions]
   (boolean
    (let [[head & rest] positions]
-     (js/console.log (str head " " rest))
      (some #{head} rest))))
 
 (defn collided-with-edge?
   [positions]
   (let [[head-x head-y] (first positions)]
-    (js/console.log (str head-x " " head-y))
     (or (= head-x config/matrix-size)
         (= head-y config/matrix-size)
         (< head-x 0)

@@ -7,9 +7,9 @@
 
 (def snake-initial-size 3)
 
-(def game-speed 1000)
+(def game-speed 500)
 
-(def food-probability-perc 10)
+(def food-probability-perc 5)
 
 (defn new-matrix []
   (matrix/zero-matrix matrix-size matrix-size))
