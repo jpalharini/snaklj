@@ -20,21 +20,6 @@
                         :positions initial-snake-positions}
                 :food-position (game.logic/new-food-position initial-snake-positions))))))
 
-(rf/reg-event-db
- :snake/ate
- (fn [db _]
-   (assoc db :food-position (game.logic/new-food-position (-> db :snake :positions)))))
-
-(rf/reg-event-db
- :game/change-state
- (fn [db _]
-   (let [current-state (:game-state db)]
-     (when (= current-state :lost)
-       (rf/dispatch [::initialize-game]))
-     (assoc db :game-state (case current-state
-                             :running :paused
-                             :running)))))
-
 (defn update-valid-direction
   [db new-direction]
   (let [current-direction (-> db :snake :direction)

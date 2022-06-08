@@ -2,8 +2,8 @@
   (:require [clojure.core.matrix :as matrix]
             [re-frame.core :as rf]
             [snaklj.db :as db]
-            [snaklj.game.logic :as logic]
-            [snaklj.events]))
+            [snaklj.events]
+            [snaklj.game.logic :as logic]))
 
 (defn draw-snake
   [matrix snake*]
@@ -36,5 +36,5 @@
   [snake* matrix*]
   (let [new-positions (get-new-positions snake* matrix*)]
     (if (logic/collided? new-positions)
-      (rf/dispatch-sync [::db/kill-snake])
+      (rf/dispatch-sync [:snake/kill])
       (rf/dispatch-sync [::db/update-snake-positions new-positions]))))

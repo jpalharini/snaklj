@@ -1,15 +1,15 @@
 (ns snaklj.core
-  (:require [reagent.dom :as rdom]
+  (:require [clojure.core.matrix :as matrix]
+            [cljs.core.async :refer [go]]
+            [reagent.dom :as rdom]
             [re-frame.core :as rf]
+            [re-pressed.core :as rp]
+            [snaklj.db :as db]
             [snaklj.events :as events]
-            [snaklj.views :as views]
             [snaklj.config :as config]
             [snaklj.game.controller :as game]
             [snaklj.subs :as subs]
-            [snaklj.db :as db]
-            [cljs.core.async :refer [go]]
-            [clojure.core.matrix :as matrix]
-            [re-pressed.core :as rp]))
+            [snaklj.views :as views]))
 
 (defn- update-matrix! [matrix]
   (rf/dispatch [::db/update-matrix matrix]))

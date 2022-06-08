@@ -26,10 +26,3 @@
  ::update-snake-positions
  (fn [db [_ positions]]
    (assoc-in db [:snake :positions] positions)))
-
-(rf/reg-event-db
- ::kill-snake
- (fn [db _]
-   (-> db
-       (assoc-in [:snake :state] :dead)
-       (assoc :game-state :lost))))

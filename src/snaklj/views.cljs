@@ -1,9 +1,9 @@
 (ns snaklj.views
-  (:require [re-frame.core :as rf]
+  (:require [clojure.core.matrix :as matrix]
+            [re-frame.core :as rf]
             [snaklj.config :as config]
-            [snaklj.subs :as subs]
-            [snaklj.db :as db]
-            [clojure.core.matrix :as matrix]))
+            [snaklj.game.state]
+            [snaklj.subs :as subs]))
 
 (defn draw-board [matrix]
   (let [block-size 20
@@ -17,10 +17,10 @@
        (if (> (matrix/mget matrix x y) 0)
          ^{:key (str x ":" y)} [:div {:style {:width            block-size
                                               :height           block-size
-                                              :background-color "#555"
-                                              :position         "absolute"
                                               :top              (* x block-size)
-                                              :left             (* y block-size)}}]))]))
+                                              :left             (* y block-size)
+                                              :background-color "#555"
+                                              :position         "absolute"}}]))]))
 
 (defn main-panel []
   (let [matrix*     (rf/subscribe [::subs/matrix])

@@ -1,6 +1,6 @@
 (ns snaklj.game.logic
-  (:require [snaklj.config :as config]
-            [clojure.core.matrix :as matrix]))
+  (:require [clojure.core.matrix :as matrix]
+            [snaklj.config :as config]))
 
 (defn get-next-position [direction [x y]]
   (case direction
