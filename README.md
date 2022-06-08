@@ -1,7 +1,5 @@
 # snaklj
 
-https://ca87-2804-214-859d-4f3d-5889-7c0-b0f0-5587.sa.ngrok.io/
-
 The famous Nokia snake game designed in [re-frame](https://github.com/day8/re-frame).
 
 This is a project for the _Fundamentos de Sistemas Digitais_ subject at [IMED](https://imed.edu.br/), ministered by [Prof. Thaisa Leal](http://lattes.cnpq.br/4589660577066054).
