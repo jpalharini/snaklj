@@ -7,7 +7,7 @@
 
 (def snake-initial-size 3)
 
-(def game-speed 500)
+(def game-speed 300)
 
 (defn new-matrix []
   (matrix/zero-matrix matrix-size matrix-size))

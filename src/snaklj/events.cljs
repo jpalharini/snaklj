@@ -20,7 +20,7 @@
                         :positions initial-snake-positions}
                 :food-position (game.logic/new-food-position initial-snake-positions))))))
 
-(defn update-valid-direction
+(defn update-valid-direction!
   [db new-direction]
   (let [current-direction (-> db :snake :direction)
         invalid-direction (current-direction {:up    :down
@@ -30,7 +30,7 @@
     (when-not (= new-direction invalid-direction)
       (assoc-in db [:snake :direction] new-direction))))
 
-(rf/reg-event-db :key/up (fn [db _] (update-valid-direction db :up)))
-(rf/reg-event-db :key/down (fn [db _] (update-valid-direction db :down)))
-(rf/reg-event-db :key/left (fn [db _] (update-valid-direction db :left)))
-(rf/reg-event-db :key/right (fn [db _] (update-valid-direction db :right)))
+(rf/reg-event-db :key/up (fn [db _] (update-valid-direction! db :up)))
+(rf/reg-event-db :key/down (fn [db _] (update-valid-direction! db :down)))
+(rf/reg-event-db :key/left (fn [db _] (update-valid-direction! db :left)))
+(rf/reg-event-db :key/right (fn [db _] (update-valid-direction! db :right)))
